@@ -16,9 +16,9 @@ spec:
       version: v.1.0
   template:
     metadata:
-      name: drive-frontend-web
+      name: mydata-frontend-web
       labels:
-        app: drive-frontend-web
+        app: mydata-frontend-web
         version: v.1.0
     spec:
       containers:
