@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
    name: mydata-frontend-web
+   namespace: mydata-frontend-web
    labels:
       app: mydata-frontend-web
       app.kubernetes.io/version: v.1.0
