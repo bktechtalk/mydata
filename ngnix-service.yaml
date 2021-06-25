@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 apiVersion: v1
-=======
-apiVersion: apps/v1
->>>>>>> a5890f59102cf79e85ca98e466e137051ee26cbd
 kind: service
 metadata:
   name: mydata-frontend-web
