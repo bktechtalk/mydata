@@ -11,7 +11,7 @@ metadata:
 spec:
   replicas: 3
   selector:
-    matchLables:
+    matchLabels:
       app: mydata-frontend-web
       version: v.1.0
   template:
