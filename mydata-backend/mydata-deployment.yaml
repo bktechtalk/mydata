@@ -1,0 +1,26 @@
+apiVesrion: apps/v1
+kind: Deployment
+metadata:
+  name: mydata-backend-app
+  namespace: mydata
+  lables:
+    app: mydata-backend-app
+    app.kubernetes.io/version: v.1.0    
+
+spec:
+  replica: 3
+  selector: 
+    matchLabels:
+      app: mydata-backend-app
+      version: v.1.0
+  template:
+    metadata:
+      name: mydata-backend-app
+      lables:
+        app: mydata-backend-app
+        vesrion: v.1.0
+  spec:
+    container:
+    - name: mydata-backend-app
+      image: baruniitt06/docker-mydata-image:v.1.0
+
