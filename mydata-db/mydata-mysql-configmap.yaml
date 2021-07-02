@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql
+  namespace: mydata
+  labels:
+    app: mysql
+
+data:
+  primary.cnf: |
+   #Apply this config only on primary DB.
+   [mysqld]
+   Log-bin
+    
+  replica.cnf: |
+   #Apply this config only on replicas DB.
+   [mysqld]
+   super-read-only
