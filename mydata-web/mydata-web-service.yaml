@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ application_name }}-web
+  namespace: {{ namespace_name }}
+
+spec:
+  selector:
+    app: {{ application_name }}-web
+    version: {{ version }}
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30001
+  

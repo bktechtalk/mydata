@@ -1,0 +1,35 @@
+---
+- name: {{ application_name }} playbook | Start new deployment
+  hosts: all
+  vars:
+    - appname: "{{ application_name }}"
+    - appNameSpace: "{{ namespace_name }}"
+    - imagetag: "{{ imageTagName }}"
+    - version: "{{ version }}"
+
+  tasks:
+    - name: Create {{ application_name }} image and upload to private image repository
+      shell: |
+      docker build -t baruniitt06/dockerImage-{{ application_name }}:{{ imageTagName }}
+      docker push baruniitt06/dockerImage-{{ application_name }}:{{ imageTagName }}
+      
+    - name: Create NameSpace for {{ application_name }} 
+      command: kubectl apply -f {{ application_name }}-web-namespace.yaml
+
+    - name: Deploy {{ application_name }} service under the {{ namespace_name }}
+      command:
+        cmd: "{{ item }}"
+      with_items:
+        - kubectl apply -f {{ application_name }}-web-configmaps.yml
+        - kubectl apply -f {{ application_name }}-web-deployment.yml
+        - kubectl apply -f {{ application_name }}-web-services.yml
+        - kubectl apply -f {{ application_name }}-web-ingress.yml
+      chdir: {{ application_name }}-web
+
+    - name: Gather {{ application_name }} details and send email to {{ application_name }} app onwer
+      command: "{{ item }}"
+      with_items:
+        - kubectl -n {{ appNameSpace }} get statefulsets
+        - kubectl -n {{ appNameSpace }} get replicaset
+        - kubectl -n {{ appNameSpace }} get pods
+        - kubectl -n {{ appNameSpace }} get services

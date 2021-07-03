@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: {{ application_name }}-web
+   namespace: {{ namespace_name }}
+   labels:
+      app: {{ application_name }}-web
+      app.kubernetes.io/version: {{ version }}
+
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: {{ application_name }}-web
+      version: {{ version }}
+  template:
+    metadata:
+      name: {{ application_name }}-web
+      labels:
+        app: {{ application_name }}-web
+        version: {{ version }}
+    spec:
+      containers:
+      - name: {{ application_name }}-web-container
+        image: baruniitt06/dockerImage-{{ application_name }}:{{ imageTagName }}
+
+
+
