@@ -1,8 +1,8 @@
 ---
 - name: Start "{{ application_name }}" playbook project deployment
   hosts: all
-  vars_files:
-    - "mydataUserInput.yaml"
+  #vars_files:
+  #  - "mydataUserInput.yaml"
   #vars:
   #  - appname: "{{ application_name }}"
   #  - appNameSpace: "{{ namespace_name }}"
