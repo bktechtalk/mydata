@@ -12,7 +12,7 @@
   tasks:
     - name: Create "{{ application_name }}" image and upload to private image repository
       shell: |
-        docker build -t baruniitt06/dockerImage-{{ application_name }}:{{ imageTagName }}
+        docker build -t baruniitt06/dockerimage-{{ application_name }}:{{ imageTagName }}
         docker push baruniitt06/docker-image-{{ application_name }}:{{ imageTagName }}
       
     - name: Create NameSpace for "{{ application_name }}"
