@@ -13,8 +13,8 @@
     - name: Build "{{ application_name }}" image and push to private image repository
       docker_image:
         path: mydockerfile
-        name:  baruniitt06/dockerImage-{{ application_name }
-        tag: {{ imageTagName }}
+        name:  baruniitt06/dockerImage-{{ application_name }}
+        tag: "{{ imageTagName }}"
         push: yes
       
     - name: Create NameSpace for "{{ application_name }}"
