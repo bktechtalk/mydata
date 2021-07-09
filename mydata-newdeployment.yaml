@@ -16,7 +16,7 @@
         docker push baruniitt06/dockerimage-{{ application_name }}:{{ imageTagName }}
  
     - name: Create NameSpace for "{{ application_name }}"
-      command: kubectl apply -f {{ application_name }}-web-namespace.yaml
+      command: kubectl apply -f {{ application_name }}-namespace.yaml
 
     - name: Deploy "{{ application_name }}" service under the "{{ namespace_name }}"
       command: "{{ item }}"
