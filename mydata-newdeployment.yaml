@@ -11,12 +11,10 @@
 
   tasks:
     - name: Build "{{ application_name }}" image and push to private image repository
-      docker_image:
-        path: mydockerfile
-        name:  baruniitt06/dockerImage-{{ application_name }}
-        tag: "{{ imageTagName }}"
-        push: yes
-      
+      shell: |
+        docker build -t baruniitt06/dockerImage-{{ application_name }}:{{ imageTagName }} .
+        docker push baruniitt06/dockerImage-{{ application_name }}:{{ imageTagName }}
+ 
     - name: Create NameSpace for "{{ application_name }}"
       k8s:
         name: "{{ namespace_name }}"
