@@ -17,6 +17,9 @@
  
     - name: Create NameSpace for "{{ application_name }}"
       command: kubectl apply -f {{ application_name }}-namespace.yaml
+      args:
+        chdir: "{{ repo_path }}/{{ application_name }}"
+
 
     - name: Deploy "{{ application_name }}" service under the "{{ namespace_name }}"
       command: "{{ item }}"
@@ -26,7 +29,7 @@
         - "kubectl apply -f {{ application_name }}-web-services.yml"
         - "kubectl apply -f {{ application_name }}-web-ingress.yml"
       args:
-        chdir: "{{ application_name }}-web"
+        chdir: "{{ repo_path }}/{{ application_name }}"
 
     - name: Gather "{{ application_name }}" details and send email to "{{ application_name }}" app onwer
       command: "{{ item }}"
